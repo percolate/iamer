@@ -6,6 +6,10 @@ Once dumped, you can version the resulting `json` and `ini` files to keep track
 of changes, and even ask your team mates to do [Pull Requests](https://help.github.com/articles/using-pull-requests)
 when they want access to something.
 
+IAMer is idempotent. You can run it as many times as you want, the resulting
+files will always be the same. This is useful to make sure your files are up to
+date with what you have in IAM.
+
 _To Be Implemented_ Once the text files have been modified, you can load the
 changes into IAM with one command.
 
