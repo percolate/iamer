@@ -81,6 +81,7 @@ class IamUser(object):
         return hash((self.__class__, self.name))
 
 
+@total_ordering
 class IamGroup(object):
     """Represent a group in IAM"""
     def __init__(self, name, policies):
