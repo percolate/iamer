@@ -1,5 +1,5 @@
 import unittest
-from iamer.main import IamGroup
+from iamer.iamgroup import IamGroup
 
 
 class TestIamGroup(unittest.TestCase):

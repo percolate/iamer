@@ -1,5 +1,5 @@
 import unittest
-from iamer.main import IamUser
+from iamer.iamuser import IamUser
 
 
 class TestIamUser(unittest.TestCase):
