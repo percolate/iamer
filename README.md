@@ -2,6 +2,26 @@
 
 Iamer dump and load your AWS IAM configuration into text files.
 
+Once dumped, you can version the resulting `json` and `ini` files to keep track
+of changes, and even ask your team mates to do [Pull Requests](https://help.github.com/articles/using-pull-requests)
+when they want access to something.
+
+_To Be Implemented_ Once the text files have been modified, you can load the
+changes into IAM with one command.
+
+## Quick Start
+
+```bash
+# Dump your current IAM database
+$ iamer dump
+Dumping users...
+Dumping groups...
+Dumping policies...
+
+# Save it
+$ git commit
+$ git push
+```
 
 ## Install
 
@@ -23,7 +43,7 @@ for other ways to configure it.
 
 ## Usage
 
-There are 2 modes of operation: `dump` and `load`.
+There are 2 modes of operation, `dump` and `load`.
 
 ### Dump your IAM configuration locally
 
@@ -43,16 +63,16 @@ policies attached to each.
 # This user has no group or policy
 [bob]
 
-# joe is part of the s3-some.bucket-rw group
+# joe is part of the useless-group group
 [joe]
 groups = useless-group
 
 # superadmin has multiple groups and policies attached to him
 [superadmin]
 groups = ec2-rw,
-        ec2-r53-r
+         ec2-r53-r
 policies = dynamodb-dev-201301121713,
-        dynamodb-live-201301121713,
+           dynamodb-live-201301121713,
 ```
 
 A `groups.ini` file with the list of groups defined in IAM, and the policies
@@ -69,7 +89,7 @@ policies = ec2-read-write
 # This group has 2 policies attached
 [ec2-r53-r]
 policies = ec2-read-only,
-        r53-read-only
+           r53-read-only
 ```
 
 And in the `policies/` folder, you will find all the policies referenced in the
