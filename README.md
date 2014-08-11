@@ -1,6 +1,6 @@
-# iamer [![Build Status](https://circleci.com/gh/percolate/iamer/tree/master.svg?style=shield&circle-token=8a0b48c518e6d05bcd8116c3e925a2ad2db7d25a)](https://circleci.com/gh/percolate/iamer)
+# IAMer [![Build Status](https://circleci.com/gh/percolate/iamer/tree/master.svg?style=shield&circle-token=8a0b48c518e6d05bcd8116c3e925a2ad2db7d25a)](https://circleci.com/gh/percolate/iamer)
 
-Iamer dump and load your AWS IAM configuration into text files.
+IAMer dump and load your AWS IAM configuration into text files.
 
 Once dumped, you can version the resulting `json` and `ini` files to keep track
 of changes, and even ask your team mates to do [Pull Requests](https://help.github.com/articles/using-pull-requests)
@@ -31,7 +31,7 @@ pip install iamer
 
 ## Configuration
 
-`iamer` uses [boto](https://github.com/boto/boto) so you will need the
+IAMer uses [boto](https://github.com/boto/boto) so you will need the
 following to run:
 ```bash
 export AWS_ACCESS_KEY_ID="1234567890"
