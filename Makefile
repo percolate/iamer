@@ -1,6 +1,9 @@
 develop:
 	python setup.py develop
 
+undevelop:
+	python setup.py develop --uninstall
+
 test:
 	nosetests
 
