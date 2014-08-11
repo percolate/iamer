@@ -3,13 +3,14 @@ from setuptools import setup
 
 setup(
     name='iamer',
-    version='0.1.0',
+    version='0.1.1',
     description='AWS IAM dump and load tool',
     url='https://github.com/percolate/iamer',
     author='Laurent Raufaste',
     author_email='analogue@glop.org',
     license='GPLv3',
     keywords='aws iam boto',
+    packages=['iamer'],
     install_requires=[
         'boto',
         'docopt'

@@ -34,14 +34,10 @@ def load():
 
 
 def main():
-    """The main program"""
+    """The main entry point"""
     args = docopt(__doc__)
 
     if args['dump']:
         dump()
     elif args['load']:
         load()
-
-
-if __name__ == '__main__':
-    main()
