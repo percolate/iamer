@@ -3,6 +3,7 @@ develop:
 
 undevelop:
 	python setup.py develop --uninstall
+	rm -f /usr/loca/bin/iamer
 
 test:
 	nosetests
@@ -12,6 +13,6 @@ clean:
 	rm -rf users.ini groups.ini policies/
 	rm -rf dist/
 
-distribute: clean
+release: clean
 	python setup.py sdist
 	twine upload dist/*

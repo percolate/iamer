@@ -147,6 +147,32 @@ class IamCloud(object):
         """Dump user and group policies into files"""
         policies_to_dump = set()
 
+        # Check that there is no dupe policy
+        policy_used = {}
+        for user in self.users:
+            for policy in user.policies:
+                if policy.name not in policy_used:
+                    policy_used[policy.name] = set(["user:" + user.name])
+                else:
+                    policy_used[policy.name].add("user:" + user.name)
+        for group in self.groups:
+            for policy in group.policies:
+                if policy.name not in policy_used:
+                    policy_used[policy.name] = set(["group:" + group.name])
+                else:
+                    policy_used[policy.name].add("group:" + group.name)
+
+        for policy_name in policy_used:
+            if len(policy_used[policy_name]) > 1:
+                print("Multiple policies named {} have been found:"
+                      .format(policy_name))
+                for policy_user in policy_used[policy_name]:
+                    print " - {}".format(policy_user)
+                print
+                print ("You must rename any duplicate policy for the dump to "
+                       "be consistent.")
+                print "Rename those and dump again."
+
         for user in self.users:
             for policy in user.policies:
                 policies_to_dump.add(policy)
