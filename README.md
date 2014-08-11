@@ -82,7 +82,7 @@ groups = useless-group
 groups = ec2-rw,
          ec2-r53-r
 policies = dynamodb-dev-201301121713,
-           dynamodb-live-201301121713,
+           dynamodb-live-201301121713
 ```
 
 #### 2. `groups.ini`
