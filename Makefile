@@ -3,7 +3,6 @@ develop:
 
 undevelop:
 	python setup.py develop --uninstall
-	rm -f /usr/loca/bin/iamer
 
 test:
 	nosetests

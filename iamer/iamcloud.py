@@ -197,11 +197,12 @@ class IamCloud(object):
 
     def dump(self):
         """Dump everything into files"""
-        print "Dumping users..."
+        print "Dumping users into {filename}...".format(filename=USERS_FILE)
         self.dump_users()
 
-        print "Dumping groups..."
+        print "Dumping groups into {filename}...".format(filename=GROUPS_FILE)
         self.dump_groups()
 
-        print "Dumping policies..."
+        print ("Dumping policies into {foldername}/*.json..."
+               .format(foldername=POLICIES_DIR))
         self.dump_policies()

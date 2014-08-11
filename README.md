@@ -10,8 +10,8 @@ IAMer is idempotent. You can run it as many times as you want, the resulting
 files will always be the same. This is useful to make sure your files are up to
 date with what you have in IAM.
 
-_To Be Implemented_ Once the text files have been modified, you can load the
-changes into IAM with one command.
+_To Be Implemented: Once the text files have been modified, you can load the
+changes into IAM with one command._
 
 ## Quick Start
 
@@ -58,7 +58,13 @@ Dumping groups...
 Dumping policies...
 ```
 
-You will get 3 things.
+You will get 3 things:
+
+ 1. `users.ini`
+ 1. `groups.ini`
+ 1. `policies/*.json`
+
+#### 1. `users.ini`
 
 A `users.ini` file with the list of users defined in IAM, and the groups and
 policies attached to each.
@@ -79,6 +85,8 @@ policies = dynamodb-dev-201301121713,
            dynamodb-live-201301121713,
 ```
 
+#### 2. `groups.ini`
+
 A `groups.ini` file with the list of groups defined in IAM, and the policies
 attached to each.
 
@@ -95,6 +103,8 @@ policies = ec2-read-write
 policies = ec2-read-only,
            r53-read-only
 ```
+
+#### 3. `policies/*.json`
 
 And in the `policies/` folder, you will find all the policies referenced in the
 `users.ini` and `groups.ini` files as `json` files.
