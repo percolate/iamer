@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """iamer
 
 Manage your IAM rules in git.
