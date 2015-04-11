@@ -2,9 +2,9 @@
 #   python:
 #     version: 2.7
 
-# dependencies:
-#   pre:
-#     - pip install flake8
+dependencies:
+  pre:
+    - pip install coverage
 
 test:
   override:
