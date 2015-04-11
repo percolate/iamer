@@ -1,0 +1,11 @@
+dependencies:
+  pre:
+    - pip install coverage
+
+test:
+  override:
+    - nosetests --with-coverage --cover-html --cover-html-dir=$CIRCLE_ARTIFACTS:
+        # set to false until we can merge coverage
+        parallel: false
+        files:
+          - tests/**/*.py
