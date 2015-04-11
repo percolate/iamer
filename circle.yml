@@ -5,6 +5,7 @@ dependencies:
 test:
   override:
     - nosetests --with-coverage --cover-html --cover-html-dir=$CIRCLE_ARTIFACTS:
-        parallel: true
+        # set to false until we can merge coverage
+        parallel: false
         files:
           - tests/**/*.py
