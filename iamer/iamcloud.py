@@ -23,9 +23,24 @@ class IamCloud(object):
 
     def _load_users(self):
         raw_users = self._conn.get_all_users()
+        is_truncated = (raw_users[u'list_users_response']
+                                 [u'list_users_result']
+                                 [u'is_truncated'])
         u_list = (raw_users[u'list_users_response']
                            [u'list_users_result']
                            [u'users'])
+        while is_truncated == u'true':
+            marker = (raw_users[u'list_users_response']
+                               [u'list_users_result']
+                               [u'marker'])
+            raw_users = self._conn.get_all_users(marker=marker)
+            is_truncated = (raw_users[u'list_users_response']
+                                     [u'list_users_result']
+                                     [u'is_truncated'])
+            u_list += (raw_users[u'list_users_response']
+                                [u'list_users_result']
+                                [u'users'])
+
         for u_dict in u_list:
             name = u_dict[u'user_name']
 
@@ -66,9 +81,25 @@ class IamCloud(object):
 
     def _load_groups(self):
         raw_groups = self._conn.get_all_groups()
+        is_truncated = (raw_groups[u'list_groups_response']
+                                  [u'list_groups_result']
+                                  [u'is_truncated'])
         g_list = (raw_groups[u'list_groups_response']
                             [u'list_groups_result']
                             [u'groups'])
+
+        while is_truncated == u'true':
+            marker = (raw_groups[u'list_groups_response']
+                                [u'list_groups_result']
+                                [u'marker'])
+            raw_groups = self._conn.get_all_groups(marker=marker)
+            is_truncated = (raw_groups[u'list_groups_response']
+                                      [u'list_groups_result']
+                                      [u'is_truncated'])
+            g_list += (raw_groups[u'list_groups_response']
+                                 [u'list_groups_result']
+                                 [u'groups'])
+
         for g_dict in g_list:
             name = g_dict[u'group_name']
 
