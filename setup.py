@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='iamer',
-    version='0.1.3',
+    version='0.1.4',
     description='AWS IAM dump and load tool',
     url='https://github.com/percolate/iamer',
     author='Laurent Raufaste',
