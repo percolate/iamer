@@ -1,2 +1,3 @@
 *.pyc
-iamer.egg-info/
+/iamer.egg-info/
+/dist/
