@@ -8,6 +8,7 @@ from boto.iam.connection import IAMConnection
 from iamuser import IamUser
 from iamgroup import IamGroup
 from iampolicy import IamPolicy
+from iammanagedpolicy import IamManagedPolicy
 from constants import (USERS_FILE,
                        GROUPS_FILE,
                        POLICIES_DIR)
@@ -19,6 +20,7 @@ class IamCloud(object):
         self._users = set()
         self._groups = set()
         self._policies = set()
+        self._managed_policies = set()
         self._conn = IAMConnection()
 
     def _load_users(self):
@@ -122,6 +124,43 @@ class IamCloud(object):
             group = IamGroup(name, policies)
             self._groups.add(group)
 
+    def _load_managed_policies(self):
+        raw_policies = self._conn.list_policies(only_attached=False,
+                                                scope='Local')
+        is_truncated = (raw_policies[u'list_policies_response']
+                        [u'list_policies_result']
+                        [u'is_truncated'])
+        p_list = (raw_policies[u'list_policies_response']
+                  [u'list_policies_result']
+                  [u'policies'])
+
+        while is_truncated == u'true':
+            marker = (raw_policies[u'list_policies_response']
+                      [u'list_policies_result']
+                      [u'marker'])
+            raw_policies = self._conn.list_policies(marker=marker)
+            is_truncated = (raw_policies[u'list_policies_response']
+                            [u'list_policies_result']
+                            [u'is_truncated'])
+            p_list += (raw_policies[u'list_policies_response']
+                       [u'list_policies_result']
+                       [u'policies'])
+
+        for p_dict in p_list:
+            name = p_dict[u'policy_name']
+            arn = p_dict[u'arn']
+            version = p_dict[u'default_version_id']
+
+            raw_policy = self._conn.get_policy_version(arn, version)
+            encoded_policy = (raw_policy[u'get_policy_version_response']
+                              [u'get_policy_version_result']
+                              [u'policy_version']
+                              [u'document'])
+            str_policy = urllib.unquote_plus(encoded_policy)
+            dict_policy = json.loads(str_policy)
+            policy = IamManagedPolicy(name, arn, version, dict_policy)
+            self._managed_policies.add(policy)
+
     @property
     def groups(self):
         if not self._groups:
@@ -135,6 +174,13 @@ class IamCloud(object):
             self._load_policies()
 
         return self._policies
+
+    @property
+    def managed_policies(self):
+        if not self._managed_policies:
+            self._load_managed_policies()
+
+        return self._managed_policies
 
     def dump_users(self):
         """Dump users into files"""
@@ -211,6 +257,9 @@ class IamCloud(object):
         for group in self.groups:
             for policy in group.policies:
                 policies_to_dump.add(policy)
+
+        for managed_policy in self.managed_policies:
+            policies_to_dump.add(policy)
 
         # If the policies folder is not there, create it
         if policies_to_dump and not os.path.isdir(POLICIES_DIR):
