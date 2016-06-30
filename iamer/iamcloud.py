@@ -259,7 +259,7 @@ class IamCloud(object):
                 policies_to_dump.add(policy)
 
         for managed_policy in self.managed_policies:
-            policies_to_dump.add(policy)
+            policies_to_dump.add(managed_policy)
 
         # If the policies folder is not there, create it
         if policies_to_dump and not os.path.isdir(POLICIES_DIR):
