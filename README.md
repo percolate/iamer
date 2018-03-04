@@ -1,8 +1,8 @@
 # IAMer
 
 [![Build Status](https://circleci.com/gh/percolate/iamer/tree/master.svg?style=shield)](https://circleci.com/gh/percolate/iamer)
-[![Downloads](https://pypip.in/download/iamer/badge.svg?period=month)](https://pypi.python.org/pypi/iamer/)
-[![Latest Version](https://pypip.in/version/iamer/badge.svg?text=version)](https://pypi.python.org/pypi/iamer/)
+[![Downloads](https://img.shields.io/pypi/dm/iamer.svg)](https://pypi.python.org/pypi/iamer/)
+[![Latest Version](https://img.shields.io/pypi/v/iamer.svg?label=version)](https://pypi.python.org/pypi/iamer/)
 
 IAMer dump and load your AWS IAM configuration into text files.
 
