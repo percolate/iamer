@@ -1,0 +1,43 @@
+version: 2
+
+workflows:
+  version: 2
+  iamer:
+    jobs:
+      - mdl
+      - flake8
+      - cli
+      - nosetests
+
+jobs:
+
+  mdl:
+    docker:
+      - image: rsrchboy/mdl
+    steps:
+      - checkout
+      - run: mdl .
+
+  flake8:
+    docker:
+      - image: python:2
+    steps:
+      - run: pip install flake8
+      - checkout
+      - run: flake8
+
+  cli:
+    docker:
+      - image: python:2
+    steps:
+      - checkout
+      - run: python setup.py install
+      - run: iamer --help
+
+  nosetests:
+    docker:
+      - image: python:2
+    steps:
+      - run: pip install nosetests coverage
+      - checkout
+      - run: nosetests --with-coverage
