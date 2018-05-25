@@ -1,7 +1,6 @@
 # IAMer
 
 [![Build Status](https://circleci.com/gh/percolate/iamer/tree/master.svg?style=shield)](https://circleci.com/gh/percolate/iamer)
-[![Downloads](https://img.shields.io/pypi/dm/iamer.svg)](https://pypi.python.org/pypi/iamer/)
 [![Latest Version](https://img.shields.io/pypi/v/iamer.svg?label=version)](https://pypi.python.org/pypi/iamer/)
 
 IAMer dump and load your AWS IAM configuration into text files.
@@ -14,8 +13,10 @@ IAMer is idempotent. You can run it as many times as you want, the resulting
 files will always be the same. This is useful to make sure your files are up to
 date with what you have in IAM.
 
-_To Be Implemented: Once the text files have been modified, you can load the
-changes into IAM with one command._
+## To Be Implemented
+
+Once the text files have been modified, you can load the changes into IAM with
+one command.
 
 ## Quick Start
 
@@ -41,6 +42,7 @@ pip install iamer
 
 IAMer uses [boto](https://github.com/boto/boto) so you will need the
 following to run:
+
 ```bash
 export AWS_ACCESS_KEY_ID="1234567890"
 export AWS_SECRET_ACCESS_KEY="bb7075bc63f93d21fb9b8f45c3fa5ad0"
@@ -114,6 +116,7 @@ And in the `policies/` folder, you will find all the policies referenced in the
 `users.ini` and `groups.ini` files as `json` files.
 
 For example, the `policies/ec2-read-write.json` will contain:
+
 ```json
 {
   "Statement": [
@@ -128,9 +131,9 @@ For example, the `policies/ec2-read-write.json` will contain:
 
 ### Update your IAM config based on your local files
 
-_TO BE IMPLEMENTED_
+TO BE IMPLEMENTED
 
 ## See Also
 
-- [ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper)
-  to dump your EC2 Security Groups as CSV and JSON text files.
+[ec2-security-groups-dumper](https://github.com/percolate/ec2-security-groups-dumper)
+to dump your EC2 Security Groups as CSV and JSON text files.
